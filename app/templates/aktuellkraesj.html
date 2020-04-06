@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<table border = 2>
+	
+	<tr>
+	<td> Trekk</td>{%for f in forestillingsliste %}<td>{{f.forestilling_navn}}</td>{% endfor %}
+	</tr>
+	{% for trekk in trekkliste %}
+	<tr><td>{{ trekk.trekknummer }}</td>
+		<td>{%for f in forestillingsliste %}{% for e in elementliste %}{% if e.forestilling_id == f.id and e.trekk_id == trekk.id %}
+		{{ e.element_navn }}{% endif %}{% endfor %}</td>	
+
+	</tr>
+
+	{% endfor %}
+	{% endfor %}
+
+</table>
+
+{% endblock %}

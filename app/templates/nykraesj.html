@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+
+
+<table border = 2>
+	<th> Trekk </th><th> {{forest1.forestilling_navn }}</th><th>{{forest2.forestilling_navn }}</th><th>{{forest3.forestilling_navn }}</th><th>{{forest4.forestilling_navn }}</th>
+	{% for trekk in trekkliste %}
+	<tr><td>{{ trekk.trekknummer }}</td>
+		<td>{% for elem in elementliste1 %}{% if elem.trekk_id == trekk.id %} {{ elem.element_navn }} {% endif %}{% endfor %}</td>
+		<td>{% for elem in elementliste2 %}{% if elem.trekk_id == trekk.id %} {{ elem.element_navn }} {% endif %}{% endfor %}</td>
+		<td>{% for elem in elementliste3 %}{% if elem.trekk_id == trekk.id %} {{ elem.element_navn }} {% endif %}{% endfor %}</td>
+		<td>{% for elem in elementliste4 %}{% if elem.trekk_id == trekk.id %} {{ elem.element_navn }} {% endif %}{% endfor %}</td>
+
+	{% endfor %}
+
+
+
+{% endblock %}

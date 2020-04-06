@@ -1,0 +1,25 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+  {% if title %}{{ title }}{% else %} Loftliste {% endif %}
+{% endblock %}
+
+{% block navbar %}
+  <nav class ='navbar navbar-default'>
+   <a class="navbar-brand" href="{{ url_for('index') }}">Hjem</a><a class="navbar-brand" href="{{ url_for('regforestilling') }}">Registrer ny forestilling</a><a class="navbar-brand" href="{{ url_for('kraesj') }}">Ny kræsjliste </a> 
+ </nav>
+  {% endblock %}
+
+  {% block content %}
+    <div class container>
+      {% with messages = get_flashed_messages() %}
+        {% if messsages %}
+          {% for message in messages %}
+          <div class="alert alert-info" role = "alert">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block app_content %}{% endblock %}
+      </div>
+  {% endblock %}

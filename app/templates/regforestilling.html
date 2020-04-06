@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+
+<div class="container-md">
+	<div class="row justify-content-md-center">
+		<div class = "col col-lg-4"></div>
+		<div class = "col col-lg-4">
+<h1> Register ny forestilling </h1>
+	 <form class="form form-horizontal" action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.forestilling_navn.label }}<br>
+			{{ form.forestilling_navn(size =32) }}<br>
+			{% for error in form.forestilling_navn.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.premiere.label }}<br>
+			{{ form.premiere(size=32)}}<br>
+			{% for error in form.premiere.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.prod_nr.label }}<br>
+			{{ form.prod_nr(size=32)}}<br>
+			{% for error in form.prod_nr.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+
+		<p>{{ form.submit(class="btn btn-success btn-lg") }}</p>
+	</form>
+</div>
+</div>
+</div>
+
+{% endblock %}

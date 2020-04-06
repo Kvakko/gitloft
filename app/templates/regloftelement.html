@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+<div class="container-md">
+	<div class="row justify-content-md-center">
+		<div class = "col col-lg-4"></div>
+		<div class = "col col-lg-4">
+
+ <form action="" method="post" >
+		{{ form.hidden_tag() }}
+		<p>
+			{{ form.element_navn.label }}<br>
+			{{ form.element_navn(size =32, placeholder = 'xxx') }}<br>
+			{% for error in form.element_navn.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			{{ form.trekk_id.label }}<br>
+			{{ form.trekk_id}}<br>
+			{% for error in form.trekk_id.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+	
+		<p> {{ form.posisjon.label }}<br>
+			{{ form.posisjon(size = 32, placeholder = 'beskriv hvor på trekket det skal henge') }}<br>
+			{% for error in form.posisjon.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p> {{ form.paaskjot.label }}<br>
+			{{ form.paaskjot(size = 32, placeholder = 'min, max, 50 cm etc') }}<br>
+			{% for error in form.paaskjot.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>	
+		<p> {{ form.ekstra_info.label }}<br>
+			{{ form.ekstra_info(size = 32, placeholder='ekstra forklaring hvis det trengs') }}<br>
+			{% for error in form.ekstra_info.errors %}
+			<span style="color:red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p> 
+			{{ form.submit( class="btn btn-success btn-lg") }}<br>
+		</p>	
+</form>	
+</div>
+</div>
+</div>
+
+{% endblock %}

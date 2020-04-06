@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+
+<h4><form class="form-inline" method="post" role="form">{{ form.hidden_tag() }}{{ wtf.form_field(form.forestilling1) }}{{ wtf.form_field(form.forestilling2) }}{{ wtf.form_field(form.forestilling3) }}{{ wtf.form_field(form.forestilling4) }}</h4>
+
+{{ wtf.form_field(form.submit, class="btn btn-success btn-lg") }}</form>
+
+
+{% endblock %}

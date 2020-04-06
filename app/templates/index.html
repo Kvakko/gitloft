@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+{% for forestilling in forestillinger %}
+<div class ="list-group">
+<a href="/index/{{forestilling.forestilling_navn}}" class = "list-group-item list-group-item-action flex-column align-items-start active">
+	<div class="d-flex w-100 justify-content-between">
+		<h4 class="mb-1" >{{ forestilling.forestilling_navn }}</h4> <small class = "text muted"> Premiere:{{ forestilling.premiere}} Prod.nr: {{ forestilling.prod_nr }}</small>
+		
+	</div>
+</div>
+</a>
+{% endfor %}
+
+{% endblock %}

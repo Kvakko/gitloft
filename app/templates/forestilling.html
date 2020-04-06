@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<table >
+	 
+		<td><h1>{{ forestilling.forestilling_navn }}</h1> prod.nr:
+				{{ forestilling.prod_nr }}
+				<small>premiere:{{ forestilling.premiere}}</small></td>
+	
+</table>
+<div class="container-md">
+	<div class="row justify-content-md-center">
+		<div class = "col col-lg-4">
+<table  class ="table  table-striped table-dark table-bordered">
+	<thead class="thead-dark">
+		<tr><th>Trekk</th>
+			<th>Navn</th>
+			<th>posisjon på trekk </th>
+			<th>Påskjøt</th>
+			<th> Kommentar</th>
+			<th>Rediger</th>
+	
+		</tr>
+	</thead>
+	<tbody>
+	{% for trekk in trekkliste %}{% set x = namespace(done = false) %}{% set y = namespace(trekkid = 0) %}
+	<tr><td>{{ trekk.trekknummer }}</td>
+		<td>{% for elem in elementliste %}{% if elem.trekk_id == trekk.id  %}{{ elem.element_navn }} {% set x.done = true %}{% endif %}{% endfor %}</td>
+		<td>{% for elem in elementliste %}{% if elem.trekk_id == trekk.id %} {{ elem.posisjon }} {% endif %}{% endfor %}</td>
+		<td>{% for elem in elementliste %}{% if elem.trekk_id == trekk.id %} {{ elem.paaskjot }} {% endif %}{% endfor %}</td>
+		<td>{% for elem in elementliste %}{% if elem.trekk_id == trekk.id %}{% set y.trekkid = elem.id %} {{ elem.ekstra_info }} {% endif %}{% endfor %}</td>
+		<td>{% if x.done == true %}<form action ="/oppdaterloftelement/{{ forestilling.id }}/{{ y.trekkid }}" method ="post"> {{ form4.hidden_tag() }}{{ form4.submit(class="btn btn-warning btn-sm") }}</form>{% else %} <form action ="/regloftelement/{{ forestilling.id }}/{{ trekk.id }}" method ="post"> {{ form.hidden_tag() }}{{ form.submit(class="btn btn-success btn-sm") }}</form> {% endif %}
+		</td>
+	</tr>	
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<div class= "col-lg-4">
+
+<h3> Rediger forestilling</h3>
+<form action ="" method ="post">{{ form3.hidden_tag() }}
+	<p>{{ form3.forestilling_navn.label }}<br>
+		{{ form3.forestilling_navn }}<br>
+		{{ form3.prod_nr.label }}<br>
+		{{ form3.prod_nr }}<br>
+		{{ form3.premiere.label }}<br>
+		{{ form3.premiere }}<br>
+		{{ form3.submit(class="btn btn-success btn-md") }}
+	</p>
+</form>	
+</div>
+</div>
+
+{% endblock %}
+
